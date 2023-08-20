@@ -1,0 +1,103 @@
+1. Select users whose id is either 3,2 or 4
+- Please return at least: all user fields
+
+select * from users where id in (3,2,4)
+
+2. Count how many basic and premium listings each active user has
+- Please return at least: first_name, last_name, basic, premium
+
+select
+ users.first_name , users.last_name,
+ SUM(IIF(ls.status = 2, 1, 0)) as basicCount,
+  SUM(IIF(ls.status = 3, 1, 0)) as premiumCount,
+from listings as ls
+Inner Join users on users.id = ls.user_id and users.status =2
+
+
+3. Show the same count as before but only if they have at least ONE premium listing
+- Please return at least: first_name, last_name, basic, premium
+
+select
+ users.first_name , users.last_name,
+ SUM(IIF(ls.status = 2, 1, 0)) as basicCount,
+  SUM(IIF(ls.status = 3, 1, 0)) as premiumCount,
+from listings as ls
+Inner Join users on users.id = ls.user_id and users.status =2
+Group by status
+Having count(case when ls.status =3 then 1 end) >= 1
+
+4. How much revenue has each active vendor made in 2013
+- Please return at least: first_name, last_name, currency, revenue
+
+select
+    users.first_name,
+    users.last_name,
+    cl.currency,
+    SUM(cl.price) as revenue
+from
+    users 
+Inner Join
+    listings lt on users.id = lt.user_id
+Inner Join
+    clicks cl on lt.id = cl.listing_id
+Where
+    users.status = 2 and YEAR(cl.created) = 2013
+Group by
+    users.id, cl.currency
+
+
+5. Insert a new click for listing id 3, at $4.00
+- Find out the id of this new click. Please return at least: id
+
+Insert into clicks (listing_id, price, currency, created)
+values (3, 4.00, 'USD', GETDATE());
+
+select SCOPE_IDENTITY() as id
+
+6. Show listings that have not received a click in 2013
+- Please return at least: listing_name
+
+select lt.name as listing_name
+from listings lt
+Left Join clicks cl on lt.id = cl.listing_id 
+and YEAR(cl.created) = 2013
+where cl.id is null;
+
+
+7. For each year show number of listings clicked and number of vendors who owned these listings
+- Please return at least: date, total_listings_clicked, total_vendors_affected
+
+select 
+    YEAR(cl.created) AS year,
+    COUNT(DISTINCT cl.listing_id) as total_listings_clicked,
+    COUNT(DISTINCT lt.user_id) as total_vendors_affected
+from
+    clicks cl
+Inner Join
+    listings lt on cl.listing_id = lt.id
+Group by
+    YEAR(cl.created)
+
+8. Return a comma separated string of listing names for all active vendors
+- Please return at least: first_name, last_name, listing_names
+
+Select 
+    users.first_name,
+    users.last_name,
+    listingNames.listing_names as listing_names
+From
+    users 
+Join (
+    Select
+        lt.user_id,
+        (
+            Select list.name + ', '
+            from listings list
+            where list.user_id = lt.user_id
+            FOR XML PATH('')
+        ) as listing_names
+    from listings lt
+    Group by lt.user_id
+) as listingNames on users.id = listingNames.user_id
+where
+    users.status = 2;
