@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataReadApp": {
+      "commandName": "Project",
+      "commandLineArgs": "import Softwaredvice C:\\Users\\rahchatu1\\source\\repos\\DataReadApp\\feed-products\\softwareadvice.json"
+    }
+  }
+}
