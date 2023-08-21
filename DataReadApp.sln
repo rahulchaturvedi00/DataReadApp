@@ -5,10 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataReadApp", "DataReadApp.csproj", "{51051066-ED57-40D8-807F-10DE625869C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlSolution", "SqlSolution", "{84791141-9A2C-4698-BDDE-0B6F03AFA13E}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\ExamPrep\Assignment\Solutions\Database\SQL_Solution.txt = ..\..\..\Desktop\ExamPrep\Assignment\Solutions\Database\SQL_Solution.txt
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataReadAppTests", "..\DataReadAppTests\DataReadAppTests.csproj", "{F96B1F19-6FAE-49AC-B814-88B29FCC8E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +17,10 @@ Global
 		{51051066-ED57-40D8-807F-10DE625869C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51051066-ED57-40D8-807F-10DE625869C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51051066-ED57-40D8-807F-10DE625869C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96B1F19-6FAE-49AC-B814-88B29FCC8E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96B1F19-6FAE-49AC-B814-88B29FCC8E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96B1F19-6FAE-49AC-B814-88B29FCC8E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96B1F19-6FAE-49AC-B814-88B29FCC8E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

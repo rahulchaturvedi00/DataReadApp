@@ -6,26 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace DataReadApp.Utility
+namespace DataReadApp.Utilities.YamlOperations
 {
-    public static class YamlParser
+    public class YamlParser : IYamlParser
     {
-        public static void ParseYamlValues(string path)
+        public void ParseYamlValues(string path)
         {
             string filePath = path;
-            
+
             if (File.Exists(filePath))
             {
                 try
                 {
                     string yamlContent = File.ReadAllText(filePath);
 
-                    List<DataReadApp.Captera.Captera> data = DeserializeYaml<List<DataReadApp.Captera.Captera>>(yamlContent);
+                    List<Captera.Captera> data = DeserializeYaml<List<Captera.Captera>>(yamlContent);
 
                     if (data != null)
                     {
                         foreach (var feature in data)
-                        { 
+                        {
                             Console.WriteLine($"importing: Name: {feature.name}; Categories: {feature.tags}; Twitter: @{feature.twitter}");
                         }
                     }

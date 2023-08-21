@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataReadApp
+namespace DataReadApp.Utilities.JsonOperations
 {
-    public interface IClientService
+    public interface IJsonParser
     {
-        public void DataRetriever(string sourceName, string path);
+        void ParseJsonValues(string path);
     }
 }

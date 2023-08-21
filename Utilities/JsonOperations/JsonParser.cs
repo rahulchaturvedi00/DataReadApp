@@ -8,12 +8,12 @@ using System;
 using DataReadApp.SoftwareDevice;
 using DataReadApp.Captera;
 
-namespace DataReadApp.Utility
+namespace DataReadApp.Utilities.JsonOperations
 {
 
-    public static class JsonParser
+    public class JsonParser : IJsonParser
     {
-        public static void ParseJsonValues(string path)
+        public void ParseJsonValues(string path)
         {
             string filePath = path;
 
